@@ -11,19 +11,21 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+    - name: Checkout code
+      uses: actions/checkout@v2
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version: '14'
+    - name: Set up Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '16'  # Update this to Node.js version 16 or higher
 
-      - name: Install dependencies
-        run: |
-          npm install
+    - name: Install dependencies
+      run: |
+        npm install
+        npm ci  # Ensures you're installing exactly what is in package-lock.json
 
-      - name: Run tests
-        run: |
-          npm test
+    - name: Run tests
+      run: npm test
+
